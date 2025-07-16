@@ -3994,36 +3994,36 @@ chatbotToggle.addEventListener('keydown', e => {
  </section>
   </section>
 </body>
-<script>
+  <script>
 // --- Professional Theme Toggle ---
-const themeToggle = document.getElementById('themeToggle');
+    const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
 const sunSVG = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" fill="#FFD600"/><g stroke="#FFD600" stroke-width="2"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>`;
 const moonSVG = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 0111.21 3a7 7 0 100 14A9 9 0 0021 12.79z" fill="#FFD600"/></svg>`;
 
-function setTheme(mode) {
-  if (mode === 'light') {
-    document.body.classList.add('light-mode');
+    function setTheme(mode) {
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
     themeIcon.innerHTML = sunSVG;
     themeToggle.title = 'Switch to dark mode';
     themeToggle.setAttribute('aria-label', 'Switch to dark mode');
     themeToggle.classList.add('light');
     themeToggle.classList.remove('dark');
-  } else {
-    document.body.classList.remove('light-mode');
+      } else {
+        document.body.classList.remove('light-mode');
     themeIcon.innerHTML = moonSVG;
     themeToggle.title = 'Switch to light mode';
     themeToggle.setAttribute('aria-label', 'Switch to light mode');
     themeToggle.classList.add('dark');
     themeToggle.classList.remove('light');
-  }
-  localStorage.setItem('theme', mode);
-}
+      }
+      localStorage.setItem('theme', mode);
+    }
 
 (function() {
-  const saved = localStorage.getItem('theme');
+      const saved = localStorage.getItem('theme');
   if (saved === 'light' || saved === 'dark') {
     setTheme(saved);
   } else {
@@ -4031,9 +4031,9 @@ function setTheme(mode) {
   }
 })();
 
-themeToggle.addEventListener('click', () => {
-  const isLight = document.body.classList.contains('light-mode');
-  setTheme(isLight ? 'dark' : 'light');
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      setTheme(isLight ? 'dark' : 'light');
   themeIcon.animate([
     { transform: 'rotate(0deg) scale(1)' },
     { transform: 'rotate(180deg) scale(1.2)' },
@@ -4140,8 +4140,8 @@ scrollToTopBtn.addEventListener('click', () => {
       <button type="submit" style="width:100%; background:linear-gradient(90deg,#ff4081,#00bcd4); color:#fff; border:none; border-radius:8px; padding:12px; font-size:1.1rem; font-weight:700; cursor:pointer;">Subscribe</button>
     </form>
     <div id="modal-subscription-message" style="margin-top:14px; font-size:1.05rem;"></div>
-  </div>
-</div>
+          </div>
+        </div>
 <style>
 .newsletter-modal {
   position: fixed; z-index: 20001; left: 0; top: 0; width: 100vw; height: 100vh;
@@ -4159,41 +4159,4 @@ scrollToTopBtn.addEventListener('click', () => {
 .newsletter-modal-close:hover { color: #ff4081; }
 @keyframes popIn { 0% { transform: scale(0.8); opacity: 0;} 80% { transform: scale(1.1); opacity: 1;} 100% { transform: scale(1); opacity: 1;} }
 </style>
-
-<script>
-// ... existing code ...
-const newsletterBtn = document.getElementById('newsletterBtn');
-const newsletterModal = document.getElementById('newsletterModal');
-const closeNewsletter = document.getElementById('closeNewsletter');
-const modalSubscribeForm = document.getElementById('modal-subscribe-form');
-const modalEmail = document.getElementById('modal-email');
-const modalMsg = document.getElementById('modal-subscription-message');
-
-newsletterBtn.onclick = () => {
-  newsletterModal.style.display = 'flex';
-  modalMsg.textContent = '';
-  modalEmail.value = '';
-  setTimeout(() => modalEmail.focus(), 200);
-};
-closeNewsletter.onclick = () => { newsletterModal.style.display = 'none'; };
-newsletterModal.onclick = (e) => { if (e.target === newsletterModal) newsletterModal.style.display = 'none'; };
-modalSubscribeForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const email = modalEmail.value.trim();
-  modalMsg.className = '';
-  if (!validateEmail(email)) {
-    modalMsg.textContent = "Please enter a valid email!";
-    modalMsg.style.color = '#fca5a5';
-    return;
-  }
-  modalMsg.textContent = "Subscribing...";
-  modalMsg.style.color = '#6366f1';
-  setTimeout(() => {
-    modalMsg.textContent = "You're on the list! 🎉";
-    modalMsg.style.color = '#16a34a';
-    modalEmail.value = '';
-  }, 900);
-});
-// ... existing code ...
-</script>
-</html>
+</html>/
