@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: url('https://img.freepik.com/free-photo/anime-moon-landscape_23-2151645908.jpg?uid=R121044396&ga=GA1.1.257016651.1734461295&semt=ais_hybrid') no-repeat center center fixed;
+      background-size: cover;
+      color: #e0e0e0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      animation: bgFade 8s infinite alternate;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .form-box {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #ff4081;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #b0bec5;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      background: #262626;
+      border: 2px solid #333333;
+      border-radius: 5px;
+      color: #e0e0e0;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00bcd4;
+      box-shadow: 0 0 10px #00bcd4;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #121212;
+      background: linear-gradient(90deg, #00bcd4, #008ba3);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #008ba3, #00bcd4);
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.5);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .form-link {
+      margin-top: 15px;
+      color: #b0bec5;
+      font-size: 0.9rem;
+    }
+
+    .form-link a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .form-link a:hover {
+      color: #ff4081;
+    }
+
+    @keyframes bgFade {
+      0% {
+        filter: brightness(1);
+      }
+      100% {
+        filter: brightness(0.8);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+      }
+      100% {
+        text-shadow: 0 0 20px #ff4081, 0 0 40px #ff4081, 0 0 60px #ff4081;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+        <p class="form-link">Already have an account? <a href="C:\Users\DELL\OneDrive\Desktop\Anime\frontend\login - Copy.html">Log In</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert('Registration successful! Redirecting to login...');
+          window.location.href = 'login.html';
+        } else {
+          alert(data.error || 'Registration failed');
+        }
+      } catch (err) {
+        alert('Network error');
+      }
+    });
+  </script>
+</body>
+</html>
