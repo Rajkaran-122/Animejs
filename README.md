@@ -28,3 +28,4 @@ This project is a full-stack Anime/Manga hub with a Node.js/MongoDB backend (dep
 ## Project Structure
 - `/public` - Static frontend
 - `/api` - Serverless backend (Node.js, MongoDB) "# Animejs" 
+"# Animejs" 
